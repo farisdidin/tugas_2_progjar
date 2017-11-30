@@ -1,0 +1,28 @@
+Format pengumpulan nrp1_nrp2.zip
+-Menggunakan pustaka socket biasa
+-Buatlah HTTP server yang menangani request dari klien.
+-Buatlah satu halaman html dan satu halaman php di sisi server.
+-Halaman html dan php inilah yang di-request oleh klien.
+-Buatlah direktori dataset yang berisi file-file (seperti Tugas01).
+ Selanjutnya, klien bisa masuk dengan mengkliknya, melihat list file, dan mengunduh file di dalam direktori dataset. (DIRECTORY LISTING) -DIDIN
+-Klien bisa melihat daftar isi direktori 'dataset' karena tidak ada file index.html di dalamnya. (DIRECTORY LISTING) -DIDIN
+-Respon yang didukung oleh server adalah 200 OK dan 404 Not Found (bisa ditambahkan yang lain). (SERVER.PY) -DIDIN
+-Server dapat diakses dengan browser client yang umum digunakan, misalnya Firefox dan Chrome. (HTTPSERVER.CONF) -PENYOK
+-Port server yang digunakan server (misalnya port 80) harus disimpan di dalam file terpisah, tidak boleh disimpan dalam source code. (HTTPSERVER.CONF) -PENYOK
+-Klien dapat mengakses file PHP dan menampilkan isi script hasil pengolahan PHP (Hint bisa menggunakan pemanggilan perintah shell PHP-CLI dari Python). (SERVER.PY) -PENYOK
+
+Struktur direktori server
+
+- server
+     - dataset
+     - index.html 
+     - test.php
+     - server.py
+     - httpserver.conf
+     - 404.html
+
+Batas akhir pengumpulan  4 Des 2017, 23.55
+Demo  
+5 Des 2017
+
+Mohon tidak melakukan plagiarisme terhadap source code kelompok lain, atau pekerjaan tahun sebelumnya. Plagiarisme akan mendapat nilai -10 untuk setiap tugas ybs.

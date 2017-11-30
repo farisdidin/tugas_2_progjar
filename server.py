@@ -2,6 +2,7 @@ import socket
 import select
 import sys
 import os
+import subprocess
 
 server_address =('127.0.0.1', 80)
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -22,6 +23,13 @@ try:
 			else:
 				data = sock.recv(4096)
 
+				header = "<html><head><title>dinz</title></head><body>"
+
+				footer = "</body></html>"
+
+				result = header + "<h1>hgob</h2>" + footer;
+
+
 				print data
 
 				request_header = data.split('\r\n')
@@ -32,8 +40,9 @@ try:
 					# response_data = f.read()
 					# f.close()
 					currdir = os.getcwd()
-					response_data = repr(os.listdir(currdir))
-
+					#response_data = repr(os.listdir(currdir))
+					proc = subprocess.Popen("php '"+currdir+"/index.php'", shell=True, stdout=subprocess.PIPE)
+					response_data = proc.stdout.read()
 					content_length = len(response_data)
 					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
 				sock.sendall(response_header + response_data )
