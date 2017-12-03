@@ -1,5 +1,6 @@
 import socket, select, sys, os, subprocess
 import ConfigParser
+import urllib2
 
 config = ConfigParser.RawConfigParser()   
 config.read('httpserver.conf')
@@ -24,10 +25,7 @@ try:
 			else:
 				data = sock.recv(4096)
 
-				# header = "<html><head><title>dinz</title></head><body>"
-				# footer = "</body></html>"
-				# result = header + "<h1>hgob</h2>" + footer;
-				# print data
+				print data
 
 				request_header = data.split('\r\n')
 				request_file = request_header[0].split()[1]
@@ -44,11 +42,18 @@ try:
 				
 				elif request_file == '/test.php':
 					currdir = os.getcwd()
-					proc = subprocess.Popen("php '"+currdir+"/shell.php'", shell=True, stdout=subprocess.PIPE)
+					proc = subprocess.Popen("php '"+currdir+"/test.php'", shell=True, stdout=subprocess.PIPE)
 					response_data = proc.stdout.read()
 					content_length = len(response_data)
 					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
 				
+				elif request_file == '/dataset':
+					currdir = os.getcwd()
+					proc = subprocess.Popen("php '"+currdir+"/dataset/shell.php'", shell=True, stdout=subprocess.PIPE)
+					response_data = proc.stdout.read()
+					content_length = len(response_data)
+					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
+
 				else:
 					f = open('404.html','r+')
 					response_data = f.read()
