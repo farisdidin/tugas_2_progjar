@@ -40,16 +40,9 @@ try:
 					content_length = len(response_data)
 					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
 				
-				elif request_file == '/test.php':
-					currdir = os.getcwd()
-					proc = subprocess.Popen("php '"+currdir+"/test.php'", shell=True, stdout=subprocess.PIPE)
-					response_data = proc.stdout.read()
-					content_length = len(response_data)
-					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
-				
 				elif request_file == '/dataset':
 					currdir = os.getcwd()
-					proc = subprocess.Popen("php '"+currdir+"/dataset/shell.php'", shell=True, stdout=subprocess.PIPE)
+					proc = subprocess.Popen("php '"+currdir+"/test.php'", shell=True, stdout=subprocess.PIPE)
 					response_data = proc.stdout.read()
 					content_length = len(response_data)
 					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
