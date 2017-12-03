@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>helloooo</title>
+</head>
+<body>
+	<h1>selamat datang di PAGE PHP</h1>
+
+	<?php
+$dir    = './dataset';
+$files1 = array_diff(scandir($dir),array('..','.'));
+//$files2 = scandir($dir, 1);
+foreach ($files1 as $value) {
+	echo $value;
+}
+//print_r($files1);
+//print_r($files2);
+?>
+</body>
+</html>
