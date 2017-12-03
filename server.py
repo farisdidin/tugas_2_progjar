@@ -54,6 +54,45 @@ try:
 					content_length = len(response_data)
 					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
 
+				elif request_file == '/dataset/README.md':
+					currdir = os.getcwd()
+					proc = subprocess.Popen("php '"+currdir+"/dataset/shell.php'", shell=True, stdout=subprocess.PIPE)
+					
+					file = open('dataset/README.md', 'rb')
+					while True:
+						namafile = file.read(1024)
+						while (namafile):
+							sock.send(namafile)
+							namafile = file.read(1024)
+						if not namafile:
+							file.close()
+							# sock.close()
+							break
+
+					response_data = proc.stdout.read()
+					content_length = len(response_data)
+					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
+
+				elif request_file == '/dataset/5115100088_5115100118.zip':
+					currdir = os.getcwd()
+					proc = subprocess.Popen("php '"+currdir+"/dataset/shell.php'", shell=True, stdout=subprocess.PIPE)
+					
+					file = open('dataset/5115100088_5115100118.zip', 'rb')
+					while True:
+						namafile = file.read(1024)
+						while (namafile):
+							sock.send(namafile)
+							namafile = file.read(1024)
+						if not namafile:
+							file.close()
+							# sock.close()
+							break
+
+					response_data = proc.stdout.read()
+					content_length = len(response_data)
+					response_header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' +str(content_length) + '\r\n\r\n'
+
+
 				else:
 					f = open('404.html','r+')
 					response_data = f.read()
